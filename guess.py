@@ -1,7 +1,7 @@
 from random import randint
-from sys import exit
 
-print "Welcome to....GUES THAT NUMBER!!!!"
+
+print "Welcome to....GUESS THAT NUMBER!!!!"
 print "Next thing I want you to do is insert a number and only one number"
 print "from 1 to 10"
 print "If you win you get a life time supply of...you know it"
