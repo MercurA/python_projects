@@ -22,16 +22,16 @@ class Character(object):
 		return self.armor
 	def speach(self):
 		if self.types == 'trickster':
-			print "Hy I am a/an %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
+			print "Hy I am a %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
 			print "What!?"
 		elif self.types == 'caster':
-			 print "Hy I am a/an %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
+			 print "Hy I am a %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
 			 print "I will blast them to smolding coal!!"
 		elif self.types == 'warrior':
-			print "Hy I am a/an %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
+			print "Hy I am a %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
 			print "My shield is at your side!"
 		elif self.types == 'healer':
-			print "Hy I am a/an %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
+			print "Hy I am a %s and my name is %s. I'm ready to fight!"% (self.types, self.name)
 			print "Light is on my side!"
 
 
@@ -46,7 +46,7 @@ class Monster(object):
 	def speach(self):
 		if self.name == 'Grovic':
 			print "This is my lair you bastard and its treasures the same."
-			print "Prepare to fight."
+			print "Prepare to fight!!!"
 	def attacked(self,max_power,ap = 0):
 		
 		self.ap = randint(5,max_power)
@@ -63,6 +63,7 @@ class Monster(object):
 
 
 #In here this will be the welcoming message at the beggining
+#along side with the choosing of characters to play with.
 class Welcoming(object):
 
 	def welcoming_mess(self):
@@ -128,7 +129,8 @@ class Start_Room(Scene):
 
 	def enter(self):
 		print "You first appear in a dark room filled with smoke."
-		print "You barely enter the dungeon and a goblin jumps in fromt of you."
+		print "You feel a wierd smell and hope it's not you."
+		print "You barely enter the dungeon and a goblin jumps in front of you."
 		goblin.speach()
 		if self.types == 'warrior':
 			print "You draw your sword."
@@ -162,7 +164,7 @@ class Start_Room(Scene):
 						death.ending() 
 			elif resp == 'n':
 				print "Your lack of reflex got you killed."
-				print "%s the Goblin managed to stabe you with his pointy dagger killing you in an instant."% goblin.name
+				print "%s the Goblin managed to stab you with his pointy dagger killing you in an instant."% goblin.name
 				death.ending()
 
 		elif self.types == 'healer':
@@ -200,7 +202,7 @@ class Start_Room(Scene):
 				death.ending()
 
 		elif self.types == 'trickster':
-			print "Your dagger are ready and pointy"
+			print "Your dagger are ready and pointy, and you look great in all that leather."
 			print "Do you want to attack first?(y/n)"
 			resp = raw_input(">")
 			if resp == 'y':
@@ -220,12 +222,12 @@ class Start_Room(Scene):
 						print "\n" 
 					elif goblin.armor <= 0:
 						print "You bastard or what ever is your name, this is not the last of us!!!"
-						print "His vanishes into a cloud of mist and you are now able to move on."
+						print "He vanishes into a cloud of mist and you are now able to move on."
 						second_room = Second_room()
 						second_room.enter()
 						break
 					elif priest.armor <= 0:
-						print "Your adveture ends here"
+						print "Your adventure ends here"
 						death.ending() 
 			elif resp == 'n':
 				print "Your lack of reflex got you killed."
@@ -252,10 +254,13 @@ class Start_Room(Scene):
 						print "\n"
 					elif goblin.armor < x:
 						print "You bastard or what ever is your name, this is not the last of us!!!"
-						print "His vanishes into a cloud of mist and you are now able to move on."
+						print "He vanishes into a cloud of mist and you are now able to move on."
 						second_room = Second_room()
 						second_room.enter()
 						break
+					elif mage.armor <= 0:
+						print "Your andventure ends here."
+						death.ending()
 			elif resp == 'n':
 				print "Your lack of reflex got you killed."
 				print "%s the Goblin managed to stabe you with his pointy dagger killing you in an instant."% goblin.name
@@ -267,7 +272,7 @@ class Second_room(Scene):
 	@classmethod
 	def enter(self):
 		print "Dealing with that %s was pretty easy,\nbut at least you got to see how an empty dungeon looks like."% goblin.name
-		print "I beat you feel lonely now."
+		print "I bet you feel lonely now."
 		print "The exit of this room can only be done if you pass some riddles\nso here we go."
 		print "To what is PI equal to?"
 		tries = 0
@@ -290,7 +295,7 @@ class Second_room(Scene):
 	def next_trial(self):			
 		print "The next trial should be much more easier."
 		print "DISABLE THE TSAR BOMBA COUNTDOWN SEQUENCE!!!"
-		print "Just kiddind, relax, just answer me this: "
+		print "Just kidding, relax, just answer me this: "
 		print "What is that which has one voice and yet becomes four-footed and two-footed and three-footed?"
 		tries = 0
 		while tries < 3:
@@ -305,7 +310,7 @@ class Second_room(Scene):
 				self.final_trial()
 				break
 			else:
-				print " The room is filled with toxic smoke, you die!"
+				print "The room is filled with toxic smoke, you die!"
 				death.ending()
 
 	def final_trial(self):
@@ -321,7 +326,8 @@ class Second_room(Scene):
 			print "You go it."
 			print "The number was: %d%d%d"% (digit1,digit2,digit3)
 		elif answer == '125':
-			print " Very good, very good indeed."
+			print "Very good, very good indeed."
+			print "You are not that dumb after all."
 			#Here I make a global variable to be capture in Welcoming() class
 			#I'm doing this to keep the character that has been choosen in 
 			#the first instance
@@ -338,9 +344,9 @@ class Last_Room(Scene):
 	def the_battle(self):
 		if self.types == "warrior":
 			print "Your last venture from the trials was hard."
-			print "What will be next is grousome."
+			print "What will be next is gruesome."
 			print "\n"
-			print "As you think you no longer need the assistance of you holy sword,"
+			print "As you thought you no longer need the assistance of you holy sword,"
 			print "an orc that goes by the name of %s appears"% orc.name
 			print "%s spirit told my tribe what you have done,"% goblin.name
 			print "you will DIE!!!"
@@ -386,7 +392,7 @@ class Last_Room(Scene):
 		elif self.types == "caster":
 			print "Mages never have problems with trials such us this."
 			print "\n"
-			print "As you think you no longer need the assistance of you holy sword,"
+			print "As you thought you no longer need the assistance of you staff,"
 			print "an orc that goes by the name of %s appears"% orc.name
 			print "%s spirit told my tribe what you have done,"% goblin.name
 			print "you will DIE!!!"
@@ -434,7 +440,7 @@ class Last_Room(Scene):
 			print "The trials weren't that hard for a rogue."
 			print "But they could have been better."
 			print "\n"
-			print "As you think you no longer need the assistance of you holy sword,"
+			print "As you thought you no longer need the assistance of you awesome daggers,"
 			print "an orc that goes by the name of %s appears"% orc.name
 			print "%s spirit told my tribe what you have done,"% goblin.name
 			print "you will DIE!!!"
@@ -463,7 +469,7 @@ class Last_Room(Scene):
 					elif orc.armor <= 0:
 						print "Indeed it's as the legends have told, you are trully powerfull"
 						print "You have won the battle. All the richies of this world are yours."
-						print "Congratulation have a green tea."
+						print "Congratulation have a glass of red wine."
 						tries = 4
 						break
 					elif rogue.armor <= 0:
@@ -472,17 +478,17 @@ class Last_Room(Scene):
 						death.ending()
 			elif '2' in answer:
 				print "You may be stealty but you are up against a huge orc."
-				print "You try and try in the and low stamina brought you face to face with dead."
+				print "You try and try but low stamina brought you face to face with dead."
 				death.ending()
 			elif '3' in answer:
-				print "Well, first of all you missed, second why throw your wepons?"
+				print "Well, first of all you missed, second why threw your weapons?"
 				print " The orc steals your dagger and uses them to stab you...repeatedly."
 				death.ending()
 		elif self.types == "healer":
 			print "The light of Wisdom always guys a priest."
 			print "Light will always vanquish darkness."
 			print "\n"
-			print "As you think you no longer need the assistance of you holy sword,"
+			print "As you think you no longer need the assistance of you holy book,"
 			print "an orc that goes by the name of %s appears"% orc.name
 			print "%s spirit told my tribe what you have done,"% goblin.name
 			print "you will DIE!!!"
@@ -510,7 +516,7 @@ class Last_Room(Scene):
 					elif orc.armor <= 0:
 						print "Indeed it's as the legends have told, you are trully powerfull"
 						print "You have won the battle. All the richies of this world are yours."
-						print "Congratulation have a green tea."
+						print "Congratulation have a pint of holy water."
 						tries = 4
 						break
 					elif priest.armor <= 0:
@@ -524,7 +530,7 @@ class Last_Room(Scene):
 			elif '3' in answer:
 				print "You just literally threw your life away."
 				print "For a priest thats just dumb and lacking in WISDOM!"
-				print "You just died in record time."
+				print "You just died in record time. Gratz"
 				death.ending()
 class Death(Scene):
 		transmit_death = [
