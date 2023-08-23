@@ -1,10 +1,5 @@
 import random
 
-# New feature
-# If the game is lost show the user the word they had to guess
-# Also store in the letter that was guessed but not correct so the user won't need to try them again
-
-
 dictionary = ["aback", "abaft", "abandoned", "abashed", "aberrant", "abhorrent", "abiding", "abject", "ablaze", "able",
               "abnormal", "aboard", "aboriginal", "abortive", "abounding", "abrasive", "abrupt", "absent", "absorbed",
               "absorbing", "abstracted", "absurd", "abundant", "abusive", "accept", "acceptable", "accessible",
@@ -343,7 +338,6 @@ dictionary = ["aback", "abaft", "abandoned", "abashed", "aberrant", "abhorrent",
               "youthful", "yummy", "zany", "zealous", "zebra", "zephyr", "zesty", "zinc", "zip", "zipper", "zippy",
               "zonked",
               "zoo", "zoom"]
-
 
 class Hangman:
 
